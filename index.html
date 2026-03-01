@@ -22,11 +22,12 @@
     <nav class="nav">
       <a class="nav-link active" href="index.html">Home</a>
       <a class="nav-link" href="about.html">About</a>
-      <a class="nav-link cta" href="#scan">Scan Domain</a>
+      <a class="nav-link cta" href="#tools">Free Tools</a>
     </nav>
   </header>
 
   <main class="container">
+    <!-- HERO -->
     <section class="hero">
       <div class="hero-left">
         <div class="chip">GEO • AI Visibility • Future-proof Search</div>
@@ -40,9 +41,12 @@
         </p>
 
         <div class="hero-actions">
-          <a class="btn primary" href="#keywords">Get Free Keywords</a>
+          <a class="btn primary" href="#tools">Get Free Tools</a>
           <a class="btn ghost" href="about.html">Learn About GEO</a>
         </div>
+
+        <!-- HERO IMAGE -->
+        <img class="hero-img" src="images/hero-ai.png" alt="AI SEO dashboard graphic" />
 
         <div class="mini-stats">
           <div class="mini-card">
@@ -77,18 +81,23 @@
             <span class="pulse"></span> system ready
           </div>
         </div>
+
+        <!-- SIDE IMAGE -->
+        <img class="side-img" src="images/scan-graphic.png" alt="AI visibility scanning graphic" />
       </div>
     </section>
 
-    <section id="keywords" class="section">
+    <!-- TOOLS (LEFT keywords, RIGHT scan) -->
+    <section id="tools" class="section tools-section">
       <div class="section-head">
-        <h2>Free Keywords for you Business</h2>
-        <p class="muted">Enter your business name and select a category. We’ll generate at least 20 sample keyword ideas.</p>
+        <h2>Free Tools</h2>
+        <p class="muted">Generate keyword ideas and scan your domain for AI Visibility.</p>
       </div>
 
-      <div class="grid-2">
+      <div class="grid-2 tools-grid">
+        <!-- LEFT: KEYWORDS -->
         <div class="card">
-          <div class="card-title">Keyword Generator</div>
+          <div class="card-title">Free Keywords for you Business</div>
 
           <label class="label" for="bizName">Business Name</label>
           <input id="bizName" class="input" type="text" placeholder="e.g., Skyline Legal" />
@@ -108,33 +117,17 @@
             <button id="newKeywordsBtn" class="btn ghost" type="button">Generate a new one</button>
           </div>
 
-          <div class="hint">
-            Tip: Try different business names or categories to see new variations.
+          <div class="row">
+            <button id="copyKeywordsBtn" class="btn ghost" type="button">Copy Suggested Keywords</button>
           </div>
+
+          <div class="card-title" style="margin-top:14px;">Suggested Keywords</div>
+          <div id="keywordsOutput" class="output" aria-live="polite"></div>
         </div>
 
+        <!-- RIGHT: SCAN DOMAIN -->
         <div class="card">
-          <div class="card-title">Suggested Keywords</div>
-          <div id="keywordsOutput" class="output" aria-live="polite">
-            <div class="output-empty">
-              Your generated keywords will appear here.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="scan" class="section">
-      <div class="section-head">
-        <h2>Scan Your Domain</h2>
-        <p class="muted">
-          Enter your domain to simulate an AI Visibility scan with a progress bar (random 2–3 minutes).
-        </p>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-title">Domain Scanner</div>
+          <div class="card-title">Scan Your Domain</div>
 
           <label class="label" for="domainInput">Domain</label>
           <input id="domainInput" class="input" type="text" placeholder="e.g., example.com" />
@@ -158,29 +151,24 @@
             </div>
           </div>
 
-          <div class="hint">
-            ...
+          <div class="row">
+            <button id="copyMatrixBtn" class="btn ghost" type="button">Copy AI Visibility Matrix</button>
           </div>
-        </div>
 
-        <div class="card">
-          <div class="card-title">AI Visibility Matrix</div>
-          <div id="matrixOutput" class="output">
-            <div class="output-empty">
-              Run a scan to see your AI Visibility Matrix.
-            </div>
-          </div>
+          <div class="card-title" style="margin-top:14px;">AI Visibility Matrix</div>
+          <div id="matrixOutput" class="output"></div>
         </div>
       </div>
     </section>
 
+    <!-- CTA -->
     <section class="section slim">
       <div class="banner">
         <div class="banner-left">
-          <div class="banner-title">Ready to improve your AI visibility?</div>
-          <div class="banner-sub">We’ll help your brand become machine-readable, trusted, and frequently cited.</div>
+          <div class="banner-title">Want to improve your AI visibility?</div>
+          <div class="banner-sub">If your score is under 80%, we can help boost authority + citations.</div>
         </div>
-        <a class="btn primary" href="mailto:reyvem.edu.1997@gmail.com?subject=AI%20SEO%20-%20Improve%20My%20AI%20Visibility">
+        <a class="btn primary" href="mailto:YOUR_EMAIL_HERE?subject=AI%20SEO%20-%20Improve%20My%20AI%20Visibility">
           Contact Us
         </a>
       </div>
@@ -191,11 +179,10 @@
     <div>© <span id="year"></span> AI SEO — Helping your Business Grow</div>
     <div class="footer-links">
       <a href="about.html">About</a>
-      <a href="mailto:reyvem.edu.1997@gmail.com?subject=AI%20SEO%20Inquiry">Email</a>
+      <a href="mailto:YOUR_EMAIL_HERE?subject=AI%20SEO%20Inquiry">Email</a>
     </div>
   </footer>
 
   <script src="script.js"></script>
 </body>
-
 </html>
