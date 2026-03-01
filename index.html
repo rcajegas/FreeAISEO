@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>AI SEO — Helping your Business Grow</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="scanlines"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">AI</div>
+      <div class="brand-text">
+        <div class="brand-name">AI SEO</div>
+        <div class="brand-tag">Helping your Business Grow</div>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a class="nav-link active" href="index.html">Home</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link cta" href="#scan">Scan Domain</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <div class="chip">GEO • AI Visibility • Future-proof Search</div>
+        <h1>
+          Become the answer —<br/>
+          not just another link.
+        </h1>
+        <p class="lead">
+          AI-powered search is rewriting discovery. We help your brand show up inside AI-generated responses with
+          Generative Engine Optimization (GEO) and AI Visibility Strategy.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#keywords">Get Free Keywords</a>
+          <a class="btn ghost" href="about.html">Learn About GEO</a>
+        </div>
+
+        <div class="mini-stats">
+          <div class="mini-card">
+            <div class="mini-title">Signal</div>
+            <div class="mini-value">Entity Clarity</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-title">Proof</div>
+            <div class="mini-value">Source-worthiness</div>
+          </div>
+          <div class="mini-card">
+            <div class="mini-title">Result</div>
+            <div class="mini-value">AI Citations</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="terminal">
+          <div class="terminal-top">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="terminal-title">ai-seo://visibility-console</span>
+          </div>
+          <pre class="terminal-body" aria-label="terminal preview">
+<span class="t-sky">></span> ingest brand footprint
+<span class="t-sky">></span> normalize entities
+<span class="t-sky">></span> map authority ecosystem
+<span class="t-sky">></span> generate AI visibility score
+<span class="t-sky">></span> output: <span class="t-warn">recommendations</span> + <span class="t-ok">action plan</span>
+          </pre>
+          <div class="terminal-footer">
+            <span class="pulse"></span> system ready
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="keywords" class="section">
+      <div class="section-head">
+        <h2>Free Keywords for you Business</h2>
+        <p class="muted">Enter your business name and select a category. We’ll generate at least 20 sample keyword ideas.</p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Keyword Generator</div>
+
+          <label class="label" for="bizName">Business Name</label>
+          <input id="bizName" class="input" type="text" placeholder="e.g., Skyline Legal" />
+
+          <label class="label" for="bizType">Business Type</label>
+          <select id="bizType" class="input">
+            <option value="Law Firm">Law Firm</option>
+            <option value="Real Estate">Real Estate</option>
+            <option value="Restaurant">Restaurant</option>
+            <option value="Healthcare">Healthcare</option>
+            <option value="Rental Company">Rental Company</option>
+          </select>
+
+          <div class="row">
+            <button id="genKeywordsBtn" class="btn primary" type="button">Generate</button>
+            <button id="delKeywordsBtn" class="btn danger" type="button">Delete</button>
+            <button id="newKeywordsBtn" class="btn ghost" type="button">Generate a new one</button>
+          </div>
+
+          <div class="hint">
+            Tip: Try different business names or categories to see new variations.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Suggested Keywords</div>
+          <div id="keywordsOutput" class="output" aria-live="polite">
+            <div class="output-empty">
+              Your generated keywords will appear here.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="scan" class="section">
+      <div class="section-head">
+        <h2>Scan Your Domain</h2>
+        <p class="muted">
+          Enter your domain to simulate an AI Visibility scan with a progress bar (random 2–3 minutes).
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Domain Scanner</div>
+
+          <label class="label" for="domainInput">Domain</label>
+          <input id="domainInput" class="input" type="text" placeholder="e.g., example.com" />
+
+          <div class="row">
+            <button id="startScanBtn" class="btn primary" type="button">Start Scan</button>
+            <button id="resetScanBtn" class="btn danger" type="button">Reset</button>
+          </div>
+
+          <div id="scanMsg" class="scan-msg muted">
+            Please be patient we are scanning your domain
+          </div>
+
+          <div class="progress-wrap" aria-label="scan progress">
+            <div class="progress-bar">
+              <div id="progressFill" class="progress-fill" style="width:0%"></div>
+            </div>
+            <div class="progress-meta">
+              <span id="progressText">0%</span>
+              <span id="progressEta">ETA: --</span>
+            </div>
+          </div>
+
+          <div class="hint">
+            This demo generates random scoring below 80% and recommends contacting us to improve AI Visibility.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">AI Visibility Matrix</div>
+          <div id="matrixOutput" class="output">
+            <div class="output-empty">
+              Run a scan to see your AI Visibility Matrix.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section slim">
+      <div class="banner">
+        <div class="banner-left">
+          <div class="banner-title">Ready to improve your AI visibility?</div>
+          <div class="banner-sub">We’ll help your brand become machine-readable, trusted, and frequently cited.</div>
+        </div>
+        <a class="btn primary" href="mailto:reyvem.edu.1997@gmail.com?subject=AI%20SEO%20-%20Improve%20My%20AI%20Visibility">
+          Contact Us
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> AI SEO — Helping your Business Grow</div>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="mailto:reyvem.edu.1997@gmail.com?subject=AI%20SEO%20Inquiry">Email</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
