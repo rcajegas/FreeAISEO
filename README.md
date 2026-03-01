@@ -11,6 +11,7 @@ All scoring is generated dynamically using JavaScript to create a realistic eval
 This project is designed as a modern, hacker-inspired demo interface that showcases how GEO and AI visibility tools could function in a real SaaS environment.
 
 
-Free Keyword
+Free Keyword for you Business , better than SEMRUSH or Ashrefs
 
-<img width="1241" height="398" alt="image" src="https://github.com/user-attachments/assets/3d2bd807-5b90-466c-a754-adaab188dc42" />
+<img width="1562" height="794" alt="image" src="https://github.com/user-attachments/assets/cf2ffc38-b822-4660-8abf-21841cbf7074" />
+/>
