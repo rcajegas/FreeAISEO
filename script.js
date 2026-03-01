@@ -97,20 +97,6 @@
     return n.length ? n : "Your Brand";
   }
 
-  function renderKeywords(list) {
-    if (!outEl) return;
-    if (!list || list.length === 0) {
-      outEl.innerHTML = `<div class="output-empty">Your generated keywords will appear here.</div>`;
-      return;
-    }
-    const items = list.map(k => `<li>${escapeHtml(k)}</li>`).join("");
-    outEl.innerHTML = `
-      <ol class="kw-list">
-        ${items}
-      </ol>
-    `;
-  }
-
   function escapeHtml(str) {
     return String(str)
       .replaceAll("&", "&amp;")
@@ -120,17 +106,27 @@
       .replaceAll("'", "&#039;");
   }
 
+  function renderKeywords(list) {
+    if (!outEl) return;
+
+    if (!list || list.length === 0) {
+      outEl.innerHTML = "";
+      return;
+    }
+
+    const items = list.map(k => `<li>${escapeHtml(k)}</li>`).join("");
+    outEl.innerHTML = `<ol class="kw-list">${items}</ol>`;
+  }
+
   function generateKeywords(name, category, count = 20) {
     const base = categoryTemplates[category] || [];
     const cleanName = normalizeName(name);
 
-    // Optional "city" used in modifiers
     const cities = ["Singapore", "New York", "Los Angeles", "London", "Sydney", "Toronto", "Dubai", "Manila"];
     const city = pick(cities);
 
     const set = new Set();
 
-    // Seed from templates
     while (set.size < Math.min(count, base.length * 2) && base.length) {
       const t = pick(base);
       const mod = pick(modifiers).replace("{city}", city);
@@ -138,11 +134,11 @@
       set.add(phrase);
     }
 
-    // Fill remaining with combos
     while (set.size < count) {
       const i = pick(intentPhrases);
       const mod = pick(modifiers).replace("{city}", city);
-      const core = pick(base.length ? base : ["{name} services", "{name} near me", "{name} reviews"]).replaceAll("{name}", cleanName);
+      const core = pick(base.length ? base : ["{name} services", "{name} near me", "{name} reviews"])
+        .replaceAll("{name}", cleanName);
       const variant = `${i} ${core} ${Math.random() < 0.7 ? mod : ""}`.trim();
       set.add(variant.replace(/\s+/g, " "));
     }
@@ -198,7 +194,6 @@
 
   function isValidDomain(s) {
     const v = (s || "").trim();
-    // Accept "example.com" or "sub.example.co"
     return /^[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)+$/.test(v);
   }
 
@@ -213,11 +208,13 @@
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  function clamp(n) {
+    return Math.max(35, Math.min(79, n)); // keep under 80
+  }
+
   function buildMatrix(domain) {
-    // Force overall < 80
     const overall = randInt(52, 79);
 
-    // Component metrics, biased to be around overall but varied
     const metrics = [
       ["Entity Clarity", clamp(overall + randInt(-12, 10))],
       ["Structured Data", clamp(overall + randInt(-18, 8))],
@@ -251,7 +248,7 @@
 
     const recList = recommendations.map(r => `<li>${escapeHtml(r)}</li>`).join("");
 
-    const mailto = "mailto:reyvem.edu.1997@gmail.com?subject=AI%20SEO%20-%20Improve%20My%20AI%20Visibility%20(" + encodeURIComponent(domain) + ")";
+    const mailto = `mailto:YOUR_EMAIL_HERE?subject=${encodeURIComponent("AI SEO - Improve My AI Visibility (" + domain + ")")}`;
 
     return `
       <div class="note">
@@ -283,10 +280,6 @@
     `;
   }
 
-  function clamp(n) {
-    return Math.max(35, Math.min(79, n)); // keep all metrics under 80 too
-  }
-
   function startScan() {
     const domain = (domainInput ? domainInput.value : "").trim();
 
@@ -299,12 +292,10 @@
       return;
     }
 
-    // Reset outputs
-    if (matrixOutput) matrixOutput.innerHTML = `<div class="output-empty">Scanning... results will appear here.</div>`;
+    if (matrixOutput) matrixOutput.innerHTML = "";
     currentProgress = 0;
 
-    // Random duration: 2–3 minutes
-    scanDurationMs = randInt(120000, 180000);
+    scanDurationMs = randInt(120000, 180000); // 2–3 minutes
     scanStartTs = Date.now();
 
     disableScanControls(true);
@@ -312,36 +303,30 @@
 
     setScanUI(0, fmtTime(scanDurationMs));
 
-    // Ticking updates
     scanTimer = setInterval(() => {
       const elapsed = Date.now() - scanStartTs;
       const remaining = Math.max(0, scanDurationMs - elapsed);
 
-      // Progress curve: mostly steady, with small randomness
       const target = Math.min(100, (elapsed / scanDurationMs) * 100);
-      const jitter = Math.random() * 2.2; // subtle randomness
+      const jitter = Math.random() * 2.2;
       currentProgress = Math.max(currentProgress, Math.min(100, target + jitter));
 
-      // Don't hit 100 early
       if (remaining > 1500) currentProgress = Math.min(currentProgress, 98.5);
 
       setScanUI(currentProgress, fmtTime(remaining));
 
-      if (elapsed >= scanDurationMs) {
-        finishScan(domain);
-      }
+      if (elapsed >= scanDurationMs) finishScan(domain);
     }, 450);
   }
 
   function finishScan(domain) {
     if (scanTimer) clearInterval(scanTimer);
     scanTimer = null;
+
     currentProgress = 100;
     setScanUI(100, "0:00");
-
     if (scanMsg) scanMsg.textContent = "Scan complete. Generating AI Visibility Matrix…";
 
-    // brief delay for effect
     setTimeout(() => {
       if (matrixOutput) matrixOutput.innerHTML = buildMatrix(domain);
       if (scanMsg) scanMsg.textContent = "Scan complete. Review the matrix and contact us to improve AI Visibility.";
@@ -360,12 +345,41 @@
     if (scanMsg) scanMsg.textContent = "Please be patient we are scanning your domain";
     setScanUI(0, null);
 
-    if (matrixOutput) {
-      matrixOutput.innerHTML = `<div class="output-empty">Run a scan to see your AI Visibility Matrix.</div>`;
-    }
+    if (matrixOutput) matrixOutput.innerHTML = "";
     disableScanControls(false);
   }
 
   if (startScanBtn) startScanBtn.addEventListener("click", startScan);
   if (resetScanBtn) resetScanBtn.addEventListener("click", resetScan);
+
+  // -------------------------
+  // COPY BUTTONS
+  // -------------------------
+  const copyKeywordsBtn = document.getElementById("copyKeywordsBtn");
+  const copyMatrixBtn = document.getElementById("copyMatrixBtn");
+
+  function copyTextToClipboard(text) {
+    if (!text || !text.trim()) {
+      alert("Nothing to copy yet.");
+      return;
+    }
+    navigator.clipboard.writeText(text.trim())
+      .then(() => alert("Copied to clipboard ✅"))
+      .catch(() => alert("Copy failed. Please try again."));
+  }
+
+  if (copyKeywordsBtn) {
+    copyKeywordsBtn.addEventListener("click", () => {
+      const items = outEl ? outEl.querySelectorAll("li") : [];
+      const text = Array.from(items).map(li => li.textContent).join("\n");
+      copyTextToClipboard(text);
+    });
+  }
+
+  if (copyMatrixBtn) {
+    copyMatrixBtn.addEventListener("click", () => {
+      const text = matrixOutput ? matrixOutput.innerText : "";
+      copyTextToClipboard(text);
+    });
+  }
 })();
