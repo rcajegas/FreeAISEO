@@ -1,5 +1,5 @@
-# AI SEO — Helping your Business Grow
-
+ AI SEO Helping your Business Grow
+AI Visibility for Free
 ## How It Works
 
 AI SEO is a front-end demonstration website built with HTML, CSS, and JavaScript that simulates Generative Engine Optimization (GEO) tools. The homepage includes a keyword generator that creates at least 20 sample keyword suggestions based on the user’s business name and selected industry category. It dynamically combines business-specific templates, search intent phrases, and modifiers to produce realistic keyword variations.
